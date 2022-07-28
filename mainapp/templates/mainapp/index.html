@@ -1,0 +1,95 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>URL Shortener &dash; Short URLs &AMP; Custom Free Link Shortener&boxv;shortly</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'mainapp/index.css' %}">
+</head>
+<body>
+
+	<main class="container-fluid">
+		<!-- makeshift navbar -->
+		<nav class="container">
+				<div class="row">
+					<div class="col-12 text-center">
+						<div class="w-25 mx-auto">
+							<h1 class="text-body pt-4 pb-5">
+								<a href="{% url 'index' %}" id="navbar-text" class="text-dark text-decoration-none">short<span id="navbar-dot">&middot;</span>ly</a>
+							</h1>
+						</div>
+					</div>
+				</div>
+		</nav>
+
+		<!-- some text -->
+		<div class="container mt-3 mb-2">
+			<div class="row">
+				<div class="col-12">
+					<div class="text-center">
+						<p class="display-5">Short links&comma; Big results</p>
+						<p class="fs-4 text-muted">A URL shortener built with powerful tools <br> to help you grow and protect your brand.</p>
+					</div>
+				</div>				
+			</div>
+		</div>
+
+		<!-- form where users can input links -->
+		<div class="container">
+			<div class="row">
+				<div class="text-center">
+					{% if error_message %}
+						<p class="text-danger">Unable to shorten that link. It is not a valid url.</p>
+					{% else %}
+						<p>{{ short_link }}</p>
+					{% endif %}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-9 mx-auto">
+					<div class="form-inner-div border border-2 p-2 rounded bg-white">
+						<form class="d-flex flex-row justify-content-center" method="post">
+							{% csrf_token %}
+							<input type="text" name="link" class="py-3 px-3 form-control me-2 border-0" placeholder="Enter your link here..." required>
+							<button class="bg-warning rounded-end py-3 px-3 fs-5 border-0" type="submit">Shorten</button>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-7 mx-auto">
+					<p class="text-center mt-2">Example link 
+						<span class="badge bg-dark bg-gradient text-warning py-2">https://getbootstrap.com/docs/5.2/utilities</span>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- footer -->
+		<footer class="container mt-5">
+			<div class="row">
+				<div class="col-10 mx-auto">
+					<p class="text-center p-2" id="attention-text">
+						By clicking SHORTEN, you are agreeing to 
+						<a href="" class="text-muted">Bitly’s Terms of Service</a>,
+						<a href="" class="text-muted">Privacy Policy</a>, and
+						<a href="" class="text-muted">Acceptable Use Policy</a>						
+					</p>
+				</div>
+			</div>
+
+			<div class="row justify-content-center">
+					<div class="col-2">Contact</div>
+					<div class="col-2">About Us</div>
+					<div class="col-2">Privacy</div>
+			</div>
+		</footer>
+	</main>
+
+</body>
+</html>

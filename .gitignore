@@ -1,0 +1,4 @@
+*.sqlite3
+mainapp/migrations/
+mainapp/__pycache__/
+shortener/__pycache__/
